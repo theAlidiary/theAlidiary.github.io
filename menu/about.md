@@ -13,4 +13,5 @@ title:
 
 
 ---
-I want to write blogs about how to implement Stata and R, by using real time data sets!
+I want to write blogs about how to implement [Stata](https://www.stata.com/) and [
+R programming language](https://www.r-project.org/about.html), by using real time data sets!
