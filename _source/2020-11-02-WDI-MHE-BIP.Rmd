@@ -1,6 +1,10 @@
 ---
 layout: post
+<<<<<<< HEAD
 title: "From downloading and cleaning to analyzing, WDI indicators using R with codes and examples"
+=======
+title: "Downloading, cleaning and analyzing, WDI indicators in R with codes and examples"
+>>>>>>> b9775d480ee0f852f2c797a6d65a8ccbe0d8c322
 date: 2020-11-02
 categories: R
 # status: process
