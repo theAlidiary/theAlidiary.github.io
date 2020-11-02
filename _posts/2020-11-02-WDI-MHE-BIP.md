@@ -4,9 +4,9 @@ title: "Descriptive analysis of military, health and education expenditures, acr
 date: 2020-11-02
 categories: R
 status: publish
-# published: true
-status: development
-published: false
+published: true
+#status: development
+#published: false
 ---
 
 # What can you expect from this blog?
