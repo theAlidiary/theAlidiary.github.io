@@ -183,14 +183,15 @@ mycaption <- "By: Ijaz Ali,IBA Karachi"
 ## **3.1 Military expenditure (% of GDP)**
 
 
-```{r chunk8,echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400}
+```{r chunk8, echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400}
 
-ggplot(data = filter(plotdata,expenditures=="Military_expenditure"), 
+p <- ggplot(data = filter(plotdata,expenditures=="Military_expenditure"), 
        mapping = myplot) + mygeom + mytheme + myguides +
   labs(x="", y="",
        caption = mycaption,
        title = "Military expenditure (% of GDP)")
 
+p
 ```
 
 
