@@ -32,36 +32,129 @@ First, we need to search indicators and get codes for these. I am searching thes
 
 ### 1.1.1 Search for military expenditure
 
+{% highlight r %}
+library(WDI)
+
+WDIsearch(string="military expenditure",
+          short = TRUE)
+		  
+{% endhighlight %}
+		  
 From the first search result I found *Military expenditure (% of GDP)* and its code *MS.MIL.XPND.GD.ZS*
 
 ### 1.1.2 Search for health expenditure
 
+{% highlight r %}
+WDIsearch(string="current health expenditure",
+          short = TRUE)
+{% endhighlight %}
 From the second search result I found *Current health expenditure (% of GDP)* and its code *SH.XPD.CHEX.GD.ZS*
 
 ### 1.1.3 Search for expenditure on education
+
+{% highlight r %}
+WDIsearch(string="government expenditure on education",
+          short = TRUE)
+{% endhighlight %}
 
 From the third search result I found *Government expenditure on education, total (% of GDP)* and its code *SE.XPD.TOTL.GD.ZS*
 
 ## 1.2 Getting data for selected indicators
 
+{% highlight r %}
+DHEexp_data<- WDI(country = c("BGD","IND","PAK"), 
+    indicator = c('Military_expenditure' = 'MS.MIL.XPND.GD.ZS',
+                  'Health_expenditure' = 'SH.XPD.CHEX.GD.ZS',
+                  'Education_expenditure' = 'SE.XPD.TOTL.GD.ZS'),
+    start=1960, end=2020)
+{% endhighlight %}
+
 Now let's have a look at downloaded data
 
+{% highlight r %}
+library(tibble)
+
+as_tibble(DHEexp_data)
+{% endhighlight %}
 
 # **2. Cleaning the Data**
 
 After downloading, the next stage is to clean data. From the glimpse of the data. As I am concerned only with years for which data is available. Therefore, I want to remove observations with NAs.
 
+{% highlight r %}
+library(tidyr)
+library(dplyr)
+
+DHEexp_data <- drop_na(DHEexp_data)
+
+as_tibble(DHEexp_data)
+{% endhighlight %}
+
 As there are three countries, so lets filter years which are repeated 3 times, then join it with original data. While removed remaining. There are seven observations left for each country now. 
 
+{% highlight r %}
+yr3 <- count(DHEexp_data,year, sort = TRUE)
+
+DHEexp_data <-left_join(DHEexp_data,yr3, by="year") 
+
+DHEexp_data <- filter(DHEexp_data, n==3)
+
+DHEexp_data <- select(DHEexp_data,1:6)
+
+as_tibble(DHEexp_data)
+{% endhighlight %}
+
 To get the final data for visualization, data is reshaped. Subsequently rounded and selected only three intervals i.e. $2000$, $2006$ and $2012$
+
+{% highlight r %}
+DHEexp_data<- pivot_longer(DHEexp_data,
+                           !c("iso2c","country","year"), 
+                           names_to = "expenditures",
+                           values_to = "values")
+
+DHEexp_data <- DHEexp_data %>% mutate_if(is.numeric,
+                                         round, digits=2)
+
+plotdata <- filter(DHEexp_data,year==2000 |
+                     year==2006|
+                     year==2012)
+
+as_tibble(plotdata)
+{% endhighlight %}
 
 
 # **3. Data visualizations**
 
 ## **3.1 Military expenditure (% of GDP)**
 
+{% highlight r %}
+library(ggplot2)
+
+ggplot(data = filter(plotdata,expenditures=="Military_expenditure"), 
+       mapping = myplot) + mygeom + mytheme + myguides +
+  labs(x="", y="",
+       caption = mycaption,
+       title = "Military expenditure (% of GDP)")
+{% endhighlight %}
+
 ## **3.2 Current health expenditure (% of GDP)**
+
+{% highlight r %}
+ggplot(data = filter(plotdata,expenditures=="Health_expenditure"), 
+        mapping = myplot) + mygeom + mytheme + myguides +
+        labs(x="", y="",
+        caption = mycaption,
+        title = "Current health expenditure (% of GDP)")
+
+{% endhighlight %}
 
 ## **3.3 Government expenditure on education, total (% of GDP)**
 
+{% highlight r %}
+ggplot(data = filter(plotdata,expenditures=="Education_expenditure"), 
+       mapping = myplot) + mygeom + mytheme + myguides +
+      labs(x="", y="",
+       caption = mycaption,
+       title = "Government expenditure on education, total (% of GDP)")
 
+{% endhighlight %}
