@@ -238,7 +238,7 @@ ggplot(data = filter(plotdata,expenditures=="Military_expenditure"),
        caption = mycaption,
        title = "Military expenditure (% of GDP)")
 {% endhighlight %}
-
+<img src="/assets/img/2020-11-02-WDI-MHE-BIP.Rmd/mexp.png" title="plot of mexp" alt="plot of mexp" style="display: block; margin: auto;" />
 ## **3.2 Current health expenditure (% of GDP)**
 
 {% highlight r %}
@@ -249,7 +249,7 @@ ggplot(data = filter(plotdata,expenditures=="Health_expenditure"),
         title = "Current health expenditure (% of GDP)")
 
 {% endhighlight %}
-
+<img src="/assets/img/2020-11-02-WDI-MHE-BIP.Rmd/hexp.png" title="plot of hexp" alt="plot of hexp" style="display: block; margin: auto;" />
 ## **3.3 Government expenditure on education, total (% of GDP)**
 
 {% highlight r %}
@@ -260,3 +260,5 @@ ggplot(data = filter(plotdata,expenditures=="Education_expenditure"),
        title = "Government expenditure on education, total (% of GDP)")
 
 {% endhighlight %}
+
+<img src="/assets/img/2020-11-02-WDI-MHE-BIP.Rmd/eexp.png" title="plot of eexp" alt="plot of eexp" style="display: block; margin: auto;" />
