@@ -43,7 +43,7 @@ First, we need to search indicators and get codes for these. I am searching thes
 
 ### 1.1.1 Search for military expenditure
 
-```{r echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400}
+```{r chunk1, echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400}
 library(WDI)
 
 WDIsearch(string="military expenditure",
@@ -54,7 +54,7 @@ From the first search result I found *Military expenditure (% of GDP)* and its c
 
 ### 1.1.2 Search for health expenditure
 
-```{r echo=TRUE,fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400,cache=TRUE,cache.path="C:/Users/Ijaz Ali/Desktop/mysite/theAlidiary.github.io/assets/img/2020-11-02-WDI-MHE-BIP.Rmd/"}
+```{r chunk2,echo=TRUE,fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400}
 
 WDIsearch(string="health expenditure",
           short = TRUE)
@@ -64,7 +64,7 @@ From the second search result I found *Current health expenditure (% of GDP)* an
 
 ### 1.1.3 Search for expenditure on education
 
-```{r echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400,cache=TRUE,cache.path="C:/Users/Ijaz Ali/Desktop/mysite/theAlidiary.github.io/assets/img/2020-11-02-WDI-MHE-BIP.Rmd/"}
+```{r chunk3,echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400}
 
 WDIsearch(string="expenditure on education",
           short = TRUE)
@@ -74,7 +74,7 @@ From the third search result I found *Government expenditure on education, total
 
 ## 1.2 Getting data for selected indicators
 
-```{r echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400,cache=TRUE,cache.path="C:/Users/Ijaz Ali/Desktop/mysite/theAlidiary.github.io/assets/img/2020-11-02-WDI-MHE-BIP.Rmd/"}
+```{r echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400}
 
 DHEexp_data<- WDI(country = c("BGD","IND","PAK"), 
     indicator = c('Military_expenditure' = 'MS.MIL.XPND.GD.ZS',
@@ -86,7 +86,7 @@ DHEexp_data<- WDI(country = c("BGD","IND","PAK"),
 
 Now let's have a look at downloaded data
 
-```{r echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400,cache=TRUE,cache.path="C:/Users/Ijaz Ali/Desktop/mysite/theAlidiary.github.io/assets/img/2020-11-02-WDI-MHE-BIP.Rmd/"}
+```{r chunk4,echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400}
 
 library(tibble)
 
@@ -99,7 +99,7 @@ as_tibble(DHEexp_data)
 
 After downloading, the next stage is to clean data. From the glimpse of the data. As I am concerned only with years for which data is available. Therefore, I want to remove observations with NAs.
 
-```{r echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400,cache=TRUE,cache.path="C:/Users/Ijaz Ali/Desktop/mysite/theAlidiary.github.io/assets/img/2020-11-02-WDI-MHE-BIP.Rmd/"}
+```{r chunk5,echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400}
 
 library(tidyr)
 library(dplyr)
@@ -113,7 +113,7 @@ as_tibble(DHEexp_data)
 
 As there are three countries, so lets filter years which are repeated 3 times, then join it with original data. While removed remaining. There are seven observations left for each country now. 
 
-```{r echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400,cache=TRUE,cache.path="C:/Users/Ijaz Ali/Desktop/mysite/theAlidiary.github.io/assets/img/2020-11-02-WDI-MHE-BIP.Rmd/"}
+```{r chunk6,echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400}
 
 yr3 <- count(DHEexp_data,year, sort = TRUE)
 
@@ -129,7 +129,7 @@ as_tibble(DHEexp_data)
 
 To get the final data for visualization, data is reshaped. Subsequently rounded and selected only three intervals i.e. $2000$, $2006$ and $2012$
 
-```{r echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400,cache=TRUE,cache.path="C:/Users/Ijaz Ali/Desktop/mysite/theAlidiary.github.io/assets/img/2020-11-02-WDI-MHE-BIP.Rmd/"}
+```{r chunk7,echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400}
 
 DHEexp_data<- pivot_longer(DHEexp_data,
                            !c("iso2c","country","year"), 
@@ -151,7 +151,7 @@ as_tibble(plotdata)
 # **3. Data visualizations**
 
 
-```{r echo=FALSE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400,cache=TRUE,cache.path="C:/Users/Ijaz Ali/Desktop/mysite/theAlidiary.github.io/assets/img/2020-11-02-WDI-MHE-BIP.Rmd/"}
+```{r echo=FALSE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400}
 
 library(ggplot2)
 
@@ -183,7 +183,7 @@ mycaption <- "By: Ijaz Ali,IBA Karachi"
 ## **3.1 Military expenditure (% of GDP)**
 
 
-```{r echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400,cache=TRUE,cache.path="C:/Users/Ijaz Ali/Desktop/mysite/theAlidiary.github.io/assets/img/2020-11-02-WDI-MHE-BIP.Rmd/"}
+```{r chunk8,echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400}
 
 ggplot(data = filter(plotdata,expenditures=="Military_expenditure"), 
        mapping = myplot) + mygeom + mytheme + myguides +
@@ -198,7 +198,7 @@ ggplot(data = filter(plotdata,expenditures=="Military_expenditure"),
 ## **3.2 Current health expenditure (% of GDP)**
 
 
-```{r echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400,cache=TRUE,cache.path="C:/Users/Ijaz Ali/Desktop/mysite/theAlidiary.github.io/assets/img/2020-11-02-WDI-MHE-BIP.Rmd/"}
+```{r chunk9,echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400}
 
 ggplot(data = filter(plotdata,expenditures=="Health_expenditure"), 
         mapping = myplot) + mygeom + mytheme + myguides +
@@ -212,7 +212,7 @@ ggplot(data = filter(plotdata,expenditures=="Health_expenditure"),
 ## **3.3 Government expenditure on education, total (% of GDP)**
 
 
-```{r echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400,cache=TRUE,cache.path="C:/Users/Ijaz Ali/Desktop/mysite/theAlidiary.github.io/assets/img/2020-11-02-WDI-MHE-BIP.Rmd/"}
+```{r chunk10,echo=TRUE, fig.align='center', fig.height=6, fig.width=12, warning=FALSE, dpi=400}
 
 ggplot(data = filter(plotdata,expenditures=="Education_expenditure"), 
        mapping = myplot) + mygeom + mytheme + myguides +
