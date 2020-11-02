@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Descriptive analysis of military, health and education expenditures, across Bangladesh, India and Pakistan, using R with codes and explanations."
+title: "From downloading and cleaning to analyzing, WDI indicators using R with codes and examples"
 date: 2020-11-02
 categories: R
 # status: process
