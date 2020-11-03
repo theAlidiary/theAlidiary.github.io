@@ -22,10 +22,9 @@ knitr::opts_chunk$set(
 
 # **What’s in this blog?** 
 
-This blog is about performing all the following tasks using [
-R (programming language)] (https://www.r-project.org/about.html) with expamples, codes and step by step explanation. 
+This blog is about performing all the following tasks using [R programming language](https://www.r-project.org/about.html) with expamples, codes and step by step explanation. 
 
-- How to search your variable(s) of interest, in the [World Bank] (http://www.worldbank.org/), from [International Debt Statistics] (https://data.worldbank.org/products/ids)  to the [World Development Indicators (WDI)] (http://datatopics.worldbank.org/world-development-indicators/)?
+- How to search your variable(s) of interest, in the [World Bank](http://www.worldbank.org/), from [International Debt Statistics](https://data.worldbank.org/products/ids)  to the [World Development Indicators (WDI)](http://datatopics.worldbank.org/world-development-indicators/)?
 
 - How to download data for the variable(s), ranging from 1960 to the latest?
 
