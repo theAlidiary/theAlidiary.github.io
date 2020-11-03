@@ -11,10 +11,9 @@ published: true
 
 # **What’s in this blog?**
 
-This blog is about performing all the following tasks using [
-R (programming language)] (https://www.r-project.org/about.html) with expamples, codes and step by step explanation.
+This blog is about performing all the following tasks using [R programming language](https://www.r-project.org/about.html) with expamples, codes and step by step explanation.
 
-- How to search your variable(s) of interest, in the [World Bank] (http://www.worldbank.org/), from [International Debt Statistics] (https://data.worldbank.org/products/ids)  to the [World Development Indicators (WDI)] (http://datatopics.worldbank.org/world-development-indicators/)?
+- How to search your variable(s) of interest, in the [World Bank](http://www.worldbank.org/), from [International Debt Statistics](https://data.worldbank.org/products/ids)  to the [World Development Indicators (WDI)](http://datatopics.worldbank.org/world-development-indicators/)?
 
 <img src="/assets/img/2020-11-02-WDI-MHE-BIP.Rmd/wdithemes.jpg" title="plot of wdithemes" alt="plot of wdithemes" style="display: block; margin: auto;" />
 
