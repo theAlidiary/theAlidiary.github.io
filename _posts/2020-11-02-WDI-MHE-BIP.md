@@ -328,3 +328,21 @@ ggplot(data = filter(plotdata,expenditures=="Education_expenditure"),
 {% endhighlight %}
 
 <img src="/assets/img/2020-11-02-WDI-MHE-BIP.Rmd/eexp.png" title="plot of eexp" alt="plot of eexp" style="display: block; margin: auto;" />
+
+
+## **3.4 Combined graph**
+
+{% highlight r %}
+ggplot(data = plotdata,
+       mapping = aes(x = year, y = values,
+                     fill = country)) +
+  geom_col(position = "dodge", width = 3) +
+  facet_grid(~year~expenditures) +
+  mytheme1 + myguides +
+  labs(x="", y="",
+       caption = mycaption,
+       title = "Expenditures (% of GDP)")
+
+{% endhighlight %}
+
+<img src="/assets/img/2020-11-02-WDI-MHE-BIP.Rmd/combinedgraph.png" title="plot of combinedgraph" alt="plot of combinedgraph" style="display: block; margin: auto;" />
